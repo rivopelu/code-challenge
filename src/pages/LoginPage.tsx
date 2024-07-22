@@ -17,7 +17,7 @@ export default function LoginPage() {
   const page = useLoginPage();
   const formik = page.formik;
   return (
-    <div className="grid grid-cols-2 min-h-screen">
+    <div className="grid lg:grid-cols-2 min-h-screen">
       <div className="flex items-center justify-center  ">
         <div className="f w-full  h-full max-h-[80vh] items-center flex flex-col justify-center ">
           <div className="grid gap-6">
@@ -105,7 +105,7 @@ export default function LoginPage() {
         </div>
       </div>
       <div
-        className="bg-primary min-h-screen bg-cover"
+        className="bg-primary lg:block hidden min-h-screen bg-cover"
         style={{ backgroundImage: `url(${ASSETS.LOGIN_BG})` }}
       ></div>
     </div>

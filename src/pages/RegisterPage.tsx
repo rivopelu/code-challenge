@@ -17,13 +17,13 @@ export default function RegisterPage() {
   const page = useRegisterPage();
   const formik = page.formik;
   return (
-    <div className="grid grid-cols-2 ">
+    <div className="grid lg:grid-cols-2 ">
       <div
-        className="bg-primary min-h-screen bg-cover"
+        className="bg-primary lg:block hidden min-h-screen bg-cover"
         style={{ backgroundImage: `url(${ASSETS.BG_REGISTER})` }}
       ></div>
       <div className="flex items-center justify-center  ">
-        <div className="f w-full  h-full max-h-[80vh] items-center flex flex-col justify-center ">
+        <div className="f w-full  h-full lg:max-h-[80vh] items-center flex flex-col justify-center ">
           <Card radius="md" shadow="none" className="max-w-xl w-full border">
             <CardHeader className="p-6">
               <BrandLogo />
