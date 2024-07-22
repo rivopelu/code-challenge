@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import * as yup from "yup";
 import { IReqLogin } from "../models/IReqLogin";
 import { IResLogin } from "../models/IResLogin";
@@ -10,10 +10,12 @@ import { useAppDispatch } from "../redux/store";
 import AuthServices from "../service/AuthService";
 import ErrorService from "../service/ErrorService";
 import { UiServices } from "../service/UiService";
+import { ROUTES } from "../routes/routes";
 
 export function useLoginPage() {
   const dispatch = useAppDispatch();
   const [params] = useSearchParams();
+  const navigate = useNavigate();
   const successRegister = JSON.parse(params.get("success-register") as any);
   const actions = new AppActions();
   const uiService = new UiServices();
@@ -21,6 +23,12 @@ export function useLoginPage() {
   const authService = new AuthServices();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (authService.authCheck()) {
+      navigate(ROUTES.HOME());
+    }
+  }, []);
 
   const initForm: IReqLogin = {
     username: "",

@@ -20,6 +20,7 @@ export default function InputText(props: IProps) {
       name={props.name}
       onBlur={props.onBlur}
       isRequired={props.required}
+      autoComplete="false"
       type={props.type}
       label={props.label}
       startContent={props.startContent}

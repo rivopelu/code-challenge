@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IReqRegister } from "../models/IReqRegister";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -8,16 +8,24 @@ import { UiServices } from "../service/UiService";
 import ErrorService from "../service/ErrorService";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../routes/routes";
+import AuthServices from "../service/AuthService";
 
 export function useRegisterPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const actions = new AppActions();
+  const authService = new AuthServices();
   const uiService = new UiServices();
   const errorService = new ErrorService();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (authService.authCheck()) {
+      navigate(ROUTES.HOME());
+    }
+  }, []);
 
   const initForm: IReqRegister = {
     name: "",
